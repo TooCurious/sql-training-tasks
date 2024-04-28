@@ -1,0 +1,5 @@
+DELETE FROM PC
+WHERE
+ram = (SELECT min(ram) FROM PC)
+or
+hd = (SELECT min(hd) FROM PC)

@@ -1,0 +1,1 @@
+SELECT DISTINCT maker FROM PRODUCT WHERE type = 'Printer'

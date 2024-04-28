@@ -1,0 +1,11 @@
+DELETE FROM Laptop
+WHERE NOT EXISTS (
+    SELECT *
+    FROM Product
+    WHERE Product.model = Laptop.model
+    AND maker IN (
+        SELECT maker
+        FROM Product
+        WHERE type = 'printer'
+    )
+);

@@ -1,0 +1,2 @@
+SELECT model, price FROM PRINTER
+WHERE price = (SELECT MAX(price) as maxprice FROM PRINTER)

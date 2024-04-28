@@ -1,0 +1,8 @@
+INSERT INTO Outcomes (ship, battle, result)
+SELECT 'Rodney', name, 'sunk' 
+FROM Battles 
+WHERE date = '1944-10-25'
+UNION
+SELECT 'Nelson', name, 'damaged' 
+FROM Battles 
+WHERE date = '1945-01-28';

@@ -1,0 +1,12 @@
+INSERT INTO PC (code, model, speed, ram, hd, price)
+SELECT 
+    MIN(code) + 20 AS code,
+    model + 1000 AS model,
+    MAX(speed) AS speed,
+    MAX(ram) * 2 AS ram,
+    MAX(hd) * 2 AS hd,
+    MAX(price) / 1.5 AS price 
+FROM 
+    Laptop
+GROUP BY 
+    model;

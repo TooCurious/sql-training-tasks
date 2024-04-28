@@ -1,0 +1,7 @@
+SELECT class, name, country
+FROM (
+    SELECT SHIPS.class, SHIPS.name, CLASSES.country, CLASSES.numguns
+    FROM CLASSES
+    INNER JOIN SHIPS ON CLASSES.class = SHIPS.class
+) AS subquery
+WHERE numguns >= 10

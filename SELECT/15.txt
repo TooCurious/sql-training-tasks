@@ -1,0 +1,7 @@
+SELECT hd 
+FROM (
+    SELECT hd, COUNT(hd) AS hd_count
+    FROM PC
+    GROUP BY hd
+    HAVING COUNT(hd) >= 2
+) AS subquery

@@ -1,0 +1,9 @@
+WITH MODEL_A AS (
+    SELECT model FROM PRODUCT WHERE maker = 'A'
+)
+
+SELECT AVG(price) AS average_price FROM (
+    SELECT PC.price FROM MODEL_A INNER JOIN PC ON MODEL_A.model = PC.model
+    UNION ALL
+    SELECT Laptop.price FROM MODEL_A INNER JOIN Laptop ON MODEL_A.model = Laptop.model
+) AS TOTAL

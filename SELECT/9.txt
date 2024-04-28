@@ -1,0 +1,6 @@
+SELECT DISTINCT maker
+FROM (
+    SELECT PRODUCT.maker, PC.speed
+    FROM PRODUCT INNER JOIN PC ON PRODUCT.model = PC.model
+) AS subquery
+WHERE speed >= 450

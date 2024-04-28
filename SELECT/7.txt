@@ -1,0 +1,12 @@
+SELECT DISTINCT model, price
+FROM (
+    SELECT PC.model, PC.price, PRODUCT.maker
+    FROM PRODUCT INNER JOIN PC ON PRODUCT.model = PC.model
+    UNION ALL
+    SELECT Laptop.model, Laptop.price, PRODUCT.maker
+    FROM PRODUCT INNER JOIN Laptop ON PRODUCT.model = Laptop.model
+    UNION ALL
+    SELECT Printer.model, Printer.price, PRODUCT.maker
+    FROM PRODUCT INNER JOIN Printer ON PRODUCT.model = Printer.model
+) AS subquery
+WHERE maker = 'B'

@@ -1,0 +1,26 @@
+WITH LaptopStats AS (
+    SELECT
+        MIN(code) AS code,
+        model + 1000 AS model,
+        MAX(speed) AS max_speed,
+        MAX(ram) AS max_ram,
+        MAX(hd) AS max_hd,
+        MAX(price) AS max_price
+    FROM 
+        Laptop
+    GROUP BY 
+        model
+)
+INSERT INTO PC (code, model, speed, ram, hd, cd, price)
+SELECT DISTINCT
+    ls.code + 20 AS code,
+    ls.model AS model,
+    ls.max_speed AS speed,
+    ls.max_ram * 2 AS ram,
+    ls.max_hd * 2 AS hd,
+    p.max_cd,
+    ls.max_price / 1.5 AS price
+FROM 
+    LaptopStats ls
+CROSS JOIN 
+(SELECT CONCAT(MAX(CAST(REPLACE(cd, 'x', '') AS INT)), 'x') AS max_cd FROM PC) as p

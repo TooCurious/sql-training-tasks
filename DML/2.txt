@@ -1,0 +1,4 @@
+INSERT INTO product (type, model, maker) VALUES
+('Printer', '4003', 'Z'),
+('PC', '4001', 'Z'),
+('Laptop', '4002', 'Z');

@@ -1,0 +1,6 @@
+UPDATE Laptop
+SET 
+    screen = screen + 1,
+    price = price - 100
+WHERE 
+    model IN (SELECT model FROM Product WHERE maker IN ('E', 'B') AND type = 'Laptop');

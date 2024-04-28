@@ -1,0 +1,25 @@
+WITH Before_PC AS (
+    SELECT 
+        MAX(code) AS maxcode,
+        AVG(price) AS avgprice,
+        MAX(speed) AS maxspeed,
+        MAX(ram) AS maxram,
+        MAX(hd) AS maxhd,
+        CONCAT(MAX(CAST(REPLACE(cd, 'x', '') AS INT)), 'x') AS maxcd
+    FROM 
+        PC
+)
+INSERT INTO PC (code, model, speed, ram, hd, cd, price)
+SELECT 
+    p.model + bp.maxcode AS code,
+    p.model AS model,
+    bp.maxspeed AS speed,
+    bp.maxram AS ram,
+    bp.maxhd AS hd,
+    bp.maxcd AS cd,
+    bp.avgprice AS price
+FROM Product p, Before_PC bp
+WHERE 
+    NOT EXISTS (
+        SELECT 1 FROM PC WHERE model = p.model
+    ) and p.type = 'PC';

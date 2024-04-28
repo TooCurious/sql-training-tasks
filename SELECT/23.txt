@@ -1,0 +1,13 @@
+SELECT DISTINCT COOL_PC.maker
+FROM (
+    (SELECT PRODUCT.maker
+     FROM PRODUCT 
+     INNER JOIN PC ON PRODUCT.model = PC.model
+     WHERE speed >= 750) AS COOL_PC
+    INNER JOIN 
+    (SELECT PRODUCT.maker
+     FROM PRODUCT 
+     INNER JOIN LAPTOP ON PRODUCT.model = LAPTOP.model
+     WHERE speed >= 750) AS COOL_LAPTOP
+    ON COOL_PC.maker = COOL_LAPTOP.maker
+)

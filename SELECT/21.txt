@@ -1,0 +1,3 @@
+SELECT PRODUCT.maker, MAX(PC.price) AS max_price
+FROM PRODUCT INNER JOIN PC ON PRODUCT.model = PC.model
+GROUP BY maker

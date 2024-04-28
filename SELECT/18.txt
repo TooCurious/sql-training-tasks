@@ -1,0 +1,11 @@
+SELECT DISTINCT maker, price
+FROM (
+       SELECT PRODUCT.maker, PRINTER.price
+       FROM PRODUCT INNER JOIN PRINTER ON PRODUCT.model = PRINTER.model
+       WHERE color = 'y'
+) AS equal
+WHERE price = (
+       SELECT MIN(PRINTER.price) AS min_price
+       FROM PRODUCT INNER JOIN PRINTER ON PRODUCT.model = PRINTER.model
+       WHERE color = 'y'
+)

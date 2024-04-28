@@ -1,0 +1,16 @@
+WITH Inc_Out AS (  
+  SELECT 'PC' type, price, model 
+  FROM PC 
+  UNION ALL 
+  SELECT 'Laptop' type, price, model 
+  FROM LAPTOP  
+  UNION ALL 
+  SELECT 'Printer' type, price, model 
+  FROM PRINTER),
+
+MAX_PRICE_BASE AS (
+  SELECT MAX(price) AS MAX_PRICE
+  FROM Inc_Out)
+
+SELECT DISTINCT model FROM Inc_Out
+WHERE price = (SELECT * FROM MAX_PRICE_BASE)

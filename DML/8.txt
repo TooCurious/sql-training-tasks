@@ -1,0 +1,6 @@
+DELETE FROM Ships
+WHERE EXISTS (SELECT *
+FROM Outcomes
+WHERE Ships.name = Outcomes.ship
+AND
+Outcomes.result = 'sunk')
